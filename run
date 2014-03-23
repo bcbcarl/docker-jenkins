@@ -1,0 +1,8 @@
+#!/bin/bash
+
+[ -d /var/lib/jenkins/.jenkins/plugins ] || {
+  jenkins-init
+  wget https://updates.jenkins-ci.org/latest/robot.hpi -P /var/lib/jenkins/.jenkins/plugins/
+}
+
+jenkins

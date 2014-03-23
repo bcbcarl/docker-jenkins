@@ -1,0 +1,37 @@
+*** Settings ***
+Library       Selenium2Library
+
+*** Variables ***
+${BROWSER}      Firefox
+${DELAY}        0
+${LOGIN_URL}    http://zdiles.chaosnet.org/
+
+*** Keywords ***
+Open Browser To Login Page
+  Open Browser    ${LOGIN_URL}    ${BROWSER}
+  Maximize Browser Window
+  Set Selenium Speed    ${DELAY}
+
+Input Username
+  [Arguments]    ${username}
+  Input Text    uname    ${username}
+
+Input Password
+  [Arguments]    ${password}
+  Input Text    pwd    ${password}
+
+Submit Credentials
+  Click Button    login
+
+Welcome Page Should Be Open
+  Page Should Contain    Welcome
+  Title Should Be    Login
+
+*** Test Cases ***
+Valid Login
+  Open Browser To Login Page
+  Input Username    AUser
+  Input Password    TestPass
+  Submit Credentials
+  Welcome Page Should Be Open
+  [TearDown]    Close Browser
