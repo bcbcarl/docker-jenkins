@@ -2,4 +2,5 @@
 
 mkdir -p /var/lib/jenkins
 chown jenkins /var/lib/jenkins
+chown -R jenkins /opt/robot-demo
 exec su jenkins -c "java -jar /usr/share/jenkins/jenkins.war"
